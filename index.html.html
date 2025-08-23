@@ -1,0 +1,432 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Elterngeldberatung – Individuelle Elternzeitplanung</title>
+    <!--
+      Dieses HTML‑Dokument ist eine eigenständige Gestaltung einer Beratungsseite
+      zum Thema Elterngeld und Elternzeit. Es orientiert sich lose an der
+      Struktur gängiger Beratungs‑Websites, vermeidet jedoch jegliche
+      Übernahme von Texten oder geschützten Gestaltungselementen.
+    -->
+    <style>
+        /* Grundlegende Farben und Schriften definieren */
+        :root {
+            --primary-color: #084d6e;      /* dunkles Blau für Header und Akzente */
+            --secondary-color: #eaf4fb;    /* helle blaue Flächen */
+            --accent-color: #f9f1d0;       /* zartes Gelb für Highlights */
+            --text-color: #333;            /* neutrale Schriftfarbe */
+            --light-text: #666;            /* sekundäre Schriftfarbe */
+        }
+
+        body {
+            margin: 0;
+            font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+            color: var(--text-color);
+            line-height: 1.6;
+            background-color: var(--secondary-color);
+        }
+
+        /* Navigationsleiste */
+        header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            background-color: var(--primary-color);
+            color: #fff;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 2rem;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            z-index: 1000;
+        }
+
+        header .logo {
+            font-size: 1.4rem;
+            font-weight: 600;
+            letter-spacing: 0.5px;
+        }
+
+        nav ul {
+            list-style: none;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            gap: 1.2rem;
+        }
+
+        nav a {
+            color: #fff;
+            text-decoration: none;
+            font-weight: 500;
+            transition: opacity 0.3s;
+        }
+
+        nav a:hover,
+        nav a:focus {
+            opacity: 0.8;
+        }
+
+        /* Hero Abschnitt */
+        .hero {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 6rem 1rem 4rem 1rem;
+            background-image: linear-gradient(180deg, var(--secondary-color) 0%, var(--accent-color) 100%);
+            text-align: center;
+        }
+
+        .hero h1 {
+            font-size: 2.5rem;
+            margin-bottom: 0.5rem;
+            color: var(--primary-color);
+        }
+
+        .hero p {
+            font-size: 1.1rem;
+            color: var(--light-text);
+            max-width: 700px;
+            margin: 0 auto 1.5rem auto;
+        }
+
+        .btn-primary {
+            display: inline-block;
+            padding: 0.8rem 1.6rem;
+            background-color: var(--primary-color);
+            color: #fff;
+            border-radius: 4px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: background-color 0.3s;
+        }
+
+        .btn-primary:hover,
+        .btn-primary:focus {
+            background-color: #06354d;
+        }
+
+        /* Allgemeine Abschnitte */
+        section {
+            padding: 4rem 1rem;
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 2rem;
+            font-size: 2rem;
+            color: var(--primary-color);
+        }
+
+        /* Services Karten */
+        .services {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 2rem;
+            max-width: 1100px;
+            margin: 0 auto;
+        }
+
+        .service-card {
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+            padding: 2rem;
+            flex: 1 1 280px;
+            max-width: 320px;
+            text-align: center;
+        }
+
+        .service-card h3 {
+            color: var(--primary-color);
+            margin-bottom: 0.8rem;
+        }
+
+        .service-card p {
+            font-size: 0.95rem;
+            color: var(--light-text);
+        }
+
+        /* Optionen Abschnitt */
+        .options {
+            background-color: #fff;
+        }
+
+        .options .option-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+            gap: 1.5rem;
+            max-width: 1100px;
+            margin: 0 auto;
+        }
+
+        .option-item {
+            background-color: var(--secondary-color);
+            border-radius: 8px;
+            padding: 1.5rem;
+            border: 1px solid #d1e2ef;
+        }
+
+        .option-item h4 {
+            color: var(--primary-color);
+            margin-bottom: 0.5rem;
+        }
+
+        .option-item ul {
+            padding-left: 1.2rem;
+        }
+
+        .option-item li {
+            margin-bottom: 0.5rem;
+            font-size: 0.95rem;
+            color: var(--light-text);
+        }
+
+        /* Über uns Abschnitt */
+        .about-container {
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            gap: 2rem;
+            max-width: 1100px;
+            margin: 0 auto;
+        }
+
+        .about-text {
+            flex: 1 1 300px;
+        }
+
+        .about-image {
+            flex: 1 1 250px;
+            max-width: 320px;
+            text-align: center;
+        }
+
+        .about-image img {
+            width: 220px;
+            height: 220px;
+            border-radius: 50%;
+            object-fit: cover;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+
+        .about-text h3 {
+            color: var(--primary-color);
+            margin-bottom: 0.5rem;
+        }
+
+        .about-text p {
+            color: var(--light-text);
+            font-size: 0.95rem;
+        }
+
+        /* Kontaktformular Abschnitt */
+        .contact {
+            background-color: var(--primary-color);
+            color: #fff;
+        }
+
+        .contact-form {
+            max-width: 600px;
+            margin: 0 auto;
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+
+        .contact-form label {
+            font-weight: 600;
+        }
+
+        .contact-form input,
+        .contact-form textarea {
+            padding: 0.6rem;
+            border: none;
+            border-radius: 4px;
+            font-size: 0.95rem;
+        }
+
+        .contact-form input[type="submit"] {
+            background-color: var(--accent-color);
+            color: var(--primary-color);
+            font-weight: 600;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        .contact-form input[type="submit"]:hover {
+            background-color: #e4dbb5;
+        }
+
+        /* Footer */
+        footer {
+            background-color: #052f48;
+            color: #fff;
+            padding: 2rem 1rem;
+            text-align: center;
+        }
+
+        footer p {
+            margin: 0.5rem 0;
+            font-size: 0.85rem;
+        }
+
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2rem;
+            }
+            .section-title {
+                font-size: 1.6rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="logo">Elterngeldberatung Huber</div>
+        <nav>
+            <ul>
+                <li><a href="#start">Start</a></li>
+                <li><a href="#services">Leistungen</a></li>
+                <li><a href="#options">Optionen</a></li>
+                <li><a href="#about">Über uns</a></li>
+                <li><a href="#contact">Kontakt</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- Hero Section -->
+    <section id="start" class="hero">
+        <h1>Individuelle Elterngeldberatung</h1>
+        <p>Wir begleiten Sie auf dem Weg zu einer entspannten Elternzeit. Vertrauen Sie auf unsere langjährige Erfahrung, um das Beste aus Elterngeld, Elternzeit und Familienleistungen herauszuholen.</p>
+        <a href="#contact" class="btn-primary">Jetzt Termin vereinbaren</a>
+    </section>
+
+    <!-- Services Section -->
+    <section id="services">
+        <h2 class="section-title">Unsere Leistungen</h2>
+        <div class="services">
+            <div class="service-card">
+                <h3>Beratung &amp; Planung</h3>
+                <p>Wir analysieren Ihre Situation und entwickeln einen individuellen Plan für Elterngeld und Elternzeit, der zu Ihrem Berufs- und Familienleben passt.</p>
+            </div>
+            <div class="service-card">
+                <h3>Berechnung des Anspruchs</h3>
+                <p>Gemeinsam ermitteln wir Ihren voraussichtlichen Anspruch auf Elterngeld und zeigen Ihnen verschiedene Gestaltungsmöglichkeiten für den Bezugszeitraum.</p>
+            </div>
+            <div class="service-card">
+                <h3>Antragsunterstützung</h3>
+                <p>Wir führen Sie Schritt für Schritt durch die Antragsstellung und kümmern uns darum, dass alle Unterlagen vollständig und fristgerecht eingereicht werden.</p>
+            </div>
+            <div class="service-card">
+                <h3>Finanzielle Optimierung</h3>
+                <p>Mit einem Blick auf Ihre Finanzen helfen wir Ihnen, Ihren Cashflow während der Elternzeit zu optimieren und ergänzende Leistungen zu nutzen.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Options Section -->
+    <section id="options" class="options">
+        <h2 class="section-title">Elterngeld‑Modelle</h2>
+        <div class="option-grid">
+            <div class="option-item">
+                <h4>Elterngeld Basis</h4>
+                <ul>
+                    <li>Regelmäßige Auszahlung über 12 bis 14 Monate</li>
+                    <li>Anpassung an Ihre berufliche Auszeit nach der Geburt</li>
+                    <li>Höhe richtet sich nach dem Nettoeinkommen vor der Geburt</li>
+                </ul>
+            </div>
+            <div class="option-item">
+                <h4>Elterngeld Plus</h4>
+                <ul>
+                    <li>Längere Laufzeit durch halbierte Monatsbeträge</li>
+                    <li>Flexible Kombinationsmöglichkeiten mit Teilzeitarbeit</li>
+                    <li>Optimal bei längerem Wiedereinstieg in den Beruf</li>
+                </ul>
+            </div>
+            <div class="option-item">
+                <h4>Partnerschaftsbonus</h4>
+                <ul>
+                    <li>Vier zusätzliche Monate bei gleichzeitiger Teilzeitarbeit beider Elternteile</li>
+                    <li>Fördert eine partnerschaftliche Aufteilung der Elternzeit</li>
+                    <li>Kann mit Basis‑ und Plus‑Monaten kombiniert werden</li>
+                </ul>
+            </div>
+            <div class="option-item">
+                <h4>Ergänzende Leistungen</h4>
+                <ul>
+                    <li>Informationen zu Kindergeld, Familiengeld und weiteren Förderungen</li>
+                    <li>Beratung zu Renten‑ und Krankenversicherungsbeiträgen während der Elternzeit</li>
+                    <li>Tipps zur Nutzung von Steuervergünstigungen</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about">
+        <h2 class="section-title">Über uns</h2>
+        <div class="about-container">
+            <div class="about-image">
+                <!-- Das Bild ist ein Platzhalter für ein Portrait des Beraters. In einer echten Umsetzung könnte hier ein reales Foto stehen. -->
+                <img src="https://picsum.photos/seed/huber/220" alt="Hans Huber">
+            </div>
+            <div class="about-text">
+                <h3>Hans Huber – Ihr Experte für Familienleistungen</h3>
+                <p>Seit über 18 Jahren begleite ich als selbstständiger Finanzberater Familien dabei, finanzielle Entscheidungen sicher zu treffen. Als bayrisches Original lege ich großen Wert auf eine persönliche, verständliche Beratung – per Videogespräch oder vor Ort. Die Themen Elterngeld und Elternzeit sind komplex, aber mit der richtigen Begleitung wird daraus ein klarer Weg in eine entspannte Zukunft.</p>
+                <p>Ob Berechnung des Anspruchs, Optimierung Ihrer Elternzeit oder Unterstützung bei Anträgen – meine Mission ist es, Sie effizient und lösungsorientiert durch alle Schritte zu führen.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="contact">
+        <h2 class="section-title">Kontakt &amp; Terminvereinbarung</h2>
+        <p style="text-align:center; max-width:600px; margin:0 auto 2rem auto;">Sie haben Fragen oder möchten einen Beratungstermin vereinbaren? Füllen Sie das Formular aus und wir melden uns zeitnah bei Ihnen zurück.</p>
+        <form class="contact-form" action="#" method="post">
+            <label for="name">Name</label>
+            <input type="text" id="name" name="name" placeholder="Ihr Name" required>
+
+            <label for="email">E‑Mail</label>
+            <input type="email" id="email" name="email" placeholder="Ihre E‑Mail" required>
+
+            <label for="phone">Telefonnummer</label>
+            <input type="tel" id="phone" name="phone" placeholder="Optional: Telefonnummer">
+
+            <label for="message">Nachricht</label>
+            <textarea id="message" name="message" rows="4" placeholder="Wie können wir Ihnen helfen?" required></textarea>
+
+            <input type="submit" value="Nachricht senden">
+        </form>
+    </section>
+
+    <footer>
+        <p>&copy; 2025 Elterngeldberatung Huber. Alle Rechte vorbehalten.</p>
+        <p>Gewerbeanmeldung: Musterstraße 1, 85570 Markt Schwaben</p>
+        <p><a href="#" style="color: #a3c5da; text-decoration: none;">Impressum</a> &nbsp;|&nbsp; <a href="#" style="color: #a3c5da; text-decoration: none;">Datenschutz</a></p>
+    </footer>
+    
+    <!-- Kleine Hilfsfunktion zur Navigation beim Klick auf Links: sanftes Scrollen -->
+    <script>
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const targetId = this.getAttribute('href').substring(1);
+                const targetElement = document.getElementById(targetId);
+                if (targetElement) {
+                    window.scrollTo({
+                        top: targetElement.offsetTop - 70, // Höhe der feststehenden Navigationsleiste
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+    </script>
+</body>
+</html>
